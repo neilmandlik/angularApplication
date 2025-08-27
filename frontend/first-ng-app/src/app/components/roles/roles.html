@@ -1,0 +1,21 @@
+<p>Hello, roles Work</p>
+<div class="row">
+  <div class="col-3">
+    <p>{{firstName}}</p> <!-- This will show 'John' -->
+  </div>
+  <div class="col-3">
+    <p>{{lastName}}</p> <!-- This will show 'Doe' -->
+  </div>
+</div>
+
+<div class="row">
+    <div class="col-3">
+        <input type="text" class="form-control" [value]="firstName" />
+    </div>
+    <div class="col-3">
+        <input type="text" class="form-control" [(ngModel)]="lastName" />
+    <div>
+
+</div>
+
+<button class="col-6 btn btn-primary" (click)="getAlert()">Primary Button</button>
