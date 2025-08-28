@@ -11,10 +11,10 @@ import { CommonModule } from '@angular/common';
 })
 export class Master {
 
-  currentIsRoles: boolean = true;
+  currentComponent: string = 'roles';
 
-  changeComponent(): boolean {
-    this.currentIsRoles = !this.currentIsRoles;
-    return !this.currentIsRoles;
+  changeComponent(msg: string): string {
+    this.currentComponent = msg;
+    return this.currentComponent;
   }
 }
