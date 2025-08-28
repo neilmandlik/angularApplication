@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { MasterService } from '../../services/master';
 
 @Component({
   selector: 'app-designation',
@@ -10,6 +11,14 @@ import { Component } from '@angular/core';
   `,
   styles: ``
 })
-export class Designation {
+export class Designation implements OnInit {
+
+  ms = inject(MasterService)
+
+  ngOnInit(): void {
+    this.ms.getDesignations().subscribe(res=>{
+      console.log(res)
+    })
+  }
 
 }
