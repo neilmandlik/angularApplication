@@ -1,13 +1,14 @@
-<p>Hello, roles Work</p>
+<!-- <p>Hello, roles Work</p>
 <div class="row">
   <div class="col-3">
-    <p>{{firstName}}</p> <!-- This will show 'John' -->
-  </div>
+    <p>{{firstName}}</p> 
+  
+ </div>
   <div class="col-3">
-    <p>{{lastName}}</p> <!-- This will show 'Doe' -->
+    <p>{{lastName}}</p> 
   </div>
-</div>
-
+</div> -->
+<!-- 
 <div class="row">
     <div class="col-3">
         <input type="text" class="form-control" [value]="firstName" />
@@ -16,6 +17,43 @@
         <input type="text" class="form-control" [(ngModel)]="lastName" />
     <div>
 
+</div> -->
+
+<!-- <div class="row">
+  <div class="col-6">
+    <ul>
+      <li *ngFor="let r of roleList">
+        {{ r.roleId }} - {{ r.role }}
+      </li>
+    </ul>
+  </div>
+  <div class="col-6">
+    <select name="roleList" id="roleList">
+      <option *ngFor="let r of roleList" [value]="r.roleId">{{r.role}}</option>
+    </select>
+  </div>
+</div> -->
+
+<!-- <button class="col-6 btn btn-primary" (click)="getAlert()">Primary Button</button> -->
+
+
+<div class="row text-center">
+  <div class="col-12">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Role ID</th>
+          <th>Role Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let r of roleList">
+          <td>{{ r.roleId }}</td>
+          <td>{{ r.role }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 
-<button class="col-6 btn btn-primary" (click)="getAlert()">Primary Button</button>
+
