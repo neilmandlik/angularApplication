@@ -1,0 +1,26 @@
+@if(isLoading) {
+    <div class="spinner-border text-center">
+
+    </div>
+}
+
+<div class="row text-center">
+  <div class="col-12">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Designation ID</th>
+          <th>Designation Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for(d of designationList; track d.designationId) {            
+            <tr>
+                <td>{{ d.designationId }}</td>
+                <td>{{ d.designation }}</td>
+            </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
