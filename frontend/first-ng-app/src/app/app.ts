@@ -1,14 +1,15 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Roles } from './components/roles/roles';
+import { Master } from './components/master/master';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Roles],
+  imports: [RouterOutlet, Master],
   template: `
     <h1>Welcome to {{ title() }}!</h1>
     <p>Hello World</p>
-    <app-roles />
+    <app-master />
     <router-outlet />
   `,
   styles: [`
