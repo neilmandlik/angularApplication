@@ -1,0 +1,18 @@
+{
+  "message": "",
+  "result": true,
+  "data": [
+    {
+      "designationId": 30,
+      "designation": "Ben"
+    },
+    {
+      "designationId": 35,
+      "designation": "UI/UX des"
+    },
+    {
+      "designationId": 43,
+      "designation": "ui"
+    }
+  ]
+}
