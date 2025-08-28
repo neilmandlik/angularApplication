@@ -1,17 +1,17 @@
 <div class="row">
     <div class="col-12 text-center my-3">
         <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn " [ngClass]="currentIsRoles?'btn-primary':'btn-secondary'" (click)="changeComponent()">Roles</button>
-            <button type="button" class="btn " [ngClass]="!currentIsRoles?'btn-primary':'btn-secondary'" (click)="changeComponent()">Designation</button>
+            <button type="button" class="btn " [ngClass]="currentComponent === 'roles'?'btn-primary':'btn-secondary'" (click)="changeComponent('roles')">Roles</button>
+            <button type="button" class="btn " [ngClass]="currentComponent === 'desgn'?'btn-primary':'btn-secondary'" (click)="changeComponent('desgn')">Designation</button>
         </div>
     </div>
 </div>
 
 <div class="row">
-    <div class="col-12 text-center my-3" *ngIf="currentIsRoles">
+    <div class="col-12 text-center my-3" *ngIf="currentComponent === 'roles'">
         <app-roles />
     </div>
-    <div class="col-12 text-center my-3" *ngIf="!currentIsRoles">
+    <div class="col-12 text-center my-3" *ngIf="currentComponent === 'desgn'">
         <app-designation />
     </div>
 </div>
