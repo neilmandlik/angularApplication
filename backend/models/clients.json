@@ -404,6 +404,19 @@
       "gstNo": "wdefr",
       "contactNo": "1234",
       "regNo": "wefr"
+    },
+    {
+      "clientId": 8529,
+      "clientName": "dodok",
+      "companyName": "dkow",
+      "address": "kdow",
+      "city": "dkowk",
+      "pincode": "dkwok",
+      "state": "dowk",
+      "contactNo": "dkowk",
+      "employeeStrength": 0,
+      "gstNo": "",
+      "regNo": ""
     }
   ]
 }

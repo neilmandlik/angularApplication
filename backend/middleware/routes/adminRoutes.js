@@ -10,6 +10,6 @@ const {
 router.get('/roles', getRoles);
 router.get('/designations',getDesignations);
 router.get('/clients', getClients);
-router.post('/client', addUpdateClient);
+router.post('/addclient', addUpdateClient);
 
 module.exports = router;
