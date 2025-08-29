@@ -16,7 +16,7 @@ export class ClientService {
   }
 
   addUpdateClients(obj:Clientclass):Observable<IAPIClientsResponse>{
-    return this.http.post<IAPIClientsResponse>(environment.API_URL+'addupdateclient',obj)
+    return this.http.post<IAPIClientsResponse>(environment.API_URL+'addclient',obj)
   }
 
   deleteClients(cId:number):Observable<IAPIClientsResponse>{

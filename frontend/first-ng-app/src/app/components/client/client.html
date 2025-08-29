@@ -42,6 +42,9 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-6">
+                        <label for="">Person Id (0 for New)</label>
+                        <input type="text" [(ngModel)]="clientObj.clientId" class="form-control" />
+
                         <label for="">Person Name</label>
                         <input type="text" [(ngModel)]="clientObj.clientName" class="form-control" />
                     </div>
@@ -73,7 +76,7 @@
                 </div> 
                 <div class="row mt-3">
                     <div class="col-6">
-                        <button class="btn btn-primary w-100">Save</button>
+                        <button class="btn btn-primary w-100" (click)="addClient()">Save</button>
                     </div>
                     <div class="col-6">
                         <button class="btn btn-danger w-100">Clear</button>

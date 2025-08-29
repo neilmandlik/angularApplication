@@ -33,4 +33,20 @@ export class Client implements OnInit {
       }
     })
   }
+
+  addClient(){
+    console.log(this.clientObj)
+    this.cs.addUpdateClients(this.clientObj).subscribe((res:IAPIClientsResponse)=>{
+      if(res.result){
+        alert(res.message)
+        this.clientList = res.data;
+        this.cdr.detectChanges();
+        this.clientObj = new Clientclass();
+        this.cdr.detectChanges();
+      }else{
+        alert(res.message)
+      }
+    })
+  }
+
 }
