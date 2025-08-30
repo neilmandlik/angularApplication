@@ -1,6 +1,8 @@
 const roles = require('../models/roles.json'); // Adjust path relative to controllers folder
 const desgn = require('../models/designations.json');
 const clients = require('../models/clients.json');
+const employees = require('../models/employees.json')
+const clientProject = require('../models/client-project.json')
 
 const fs = require('fs');
 const path = require('path');
@@ -19,6 +21,14 @@ const getDesignations = (req, res) => {
 const getClients = (req, res) => {
   // Implementation for getting clients
   res.json(clients);
+}
+
+const getAllEmployees = (req,res) => {
+  res.json(employees)
+}
+
+const getAllClientProjects = (req,res) =>{
+  res.json(clientProject)
 }
 
 const addUpdateClient = (req, res) => {
@@ -41,22 +51,43 @@ const addUpdateClient = (req, res) => {
       // Push new client
       clients.data.push(newClient);
 
-      // Write back to file (pretty printed with 2 spaces)
+      // Write back to file (pretty printed with 2 spaces
       fs.writeFileSync(clientsFilePath, JSON.stringify(clients, null, 2));
-
-      res.json(clients);
     }else{
-      clients.data = clients.data.map((c)=>c.id===newClient.clientId?newClient:c)
+      console.log(newClient.clientId===clients.data.find(c=>c.state==="Texas").clientId)
+
+      clients.data = clients.data.map((c)=>c.clientId===newClient.clientId?newClient:c)
+
+      fs.writeFileSync(clientsFilePath, JSON.stringify(clients, null, 2));
     }
+
+    
+    res.json(clients);
 
   }catch(err){
     console.error('Error updating clients.json:', err);
     res.status(500).json({ error: 'Failed to update clients.json' });
   }
 };
+
+const deleteClient = (req, res) => {
+  // Implementation for deleting a client
+
+  const fileData = fs.readFileSync(clientsFilePath);
+  const clients = JSON.parse(fileData);
+
+  clients.data=clients.data.filter(c=>c.clientId!==parseInt(req.params.id))
+
+  fs.writeFileSync(clientsFilePath, JSON.stringify(clients, null, 2));
+
+  res.json(clients);
+}
 module.exports = { 
   getRoles, 
   getDesignations, 
   addUpdateClient,
-  getClients
+  getClients,
+  deleteClient,
+  getAllEmployees,
+  getAllClientProjects
 };
