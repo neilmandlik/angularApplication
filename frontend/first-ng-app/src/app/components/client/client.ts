@@ -40,13 +40,32 @@ export class Client implements OnInit {
       if(res.result){
         alert(res.message)
         this.clientList = res.data;
-        this.cdr.detectChanges();
         this.clientObj = new Clientclass();
         this.cdr.detectChanges();
       }else{
         alert(res.message)
       }
     })
+  }
+
+  editClient(c:Clientclass){
+    this.clientObj = c;
+    this.cdr.detectChanges();
+  }
+
+  deleteClient(cId: number){
+    if(confirm("Are you sure to delete?")){
+      this.cs.deleteClients(cId).subscribe((res:IAPIClientsResponse)=>{
+        if(res.result){
+          alert("Successful")
+          this.clientList = res.data;
+          this.clientObj = new Clientclass();
+          this.cdr.detectChanges();
+        }else{
+          alert("Not Successful")
+        }  
+      })
+    }
   }
 
 }
