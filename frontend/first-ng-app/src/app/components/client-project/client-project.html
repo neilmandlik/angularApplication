@@ -1,0 +1,87 @@
+<div class="row">
+    <div class="col-8">
+        <div class="card">
+            <div class="card-header bg-success">
+                Client List
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Client ID</th>
+                            <th>Person Name</th>
+                            <th>Company Name</th>
+                            <th>Contact</th>
+                            <th>City</th>
+                            <th>State</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-4">
+        <div class="card">
+            <div class="card-header bg-success">
+                New Client
+            </div>
+            <div class="card-body">
+                <form [formGroup] = 'projectForm' >
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="">Employee Name: </label>
+                            <select formControlName="empName" name="empName" class="form-control">
+                                <option value="">Select Employee</option>
+                                @for(e of empList;track e.empId){
+                                    <option [value]="e.empId">{{e.empName}}</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-6">
+                            <label for="">Employee Designation: </label>
+                            <input type="text" formControlName="empDesg" class="form-control">
+                        </div>
+                        <div class="col-6">
+                            <label for="">Project Name: </label>
+                            <input type="text" formControlName="projectName" class="form-control">
+                        </div>
+
+                        <div class="col-6">
+                            <label for="">Project Details: </label>
+                            <textarea type="text" formControlName="projectDetails" class="form-control"></textarea>
+                        </div>
+                        
+                        
+                        <div class="col-6">
+                            <label for="">Client Name: </label>
+                            <select name="clientName" formControlName="clientName" class="form-control">
+                                <option value="">Select Client Name</option>
+                                @for(c of clientList;track c.clientId){
+                                    <option [value]="c.clientId">{{c.companyName}}</option>
+                                }
+                            </select>
+                        </div>
+                        
+                        <div class="col-6">
+                            <label for="">Start Date: </label>
+                            <input type="date" formControlName="startDate" class="form-control">
+                        </div>
+                        
+                        <div class="col-6">
+                            <label for="">End Date: </label>
+                            <input type="date" formControlName="endDate" class="form-control">
+                        </div>                  
+                    </div>
+                </form>               
+            </div>
+        </div>
+    </div>
+</div>

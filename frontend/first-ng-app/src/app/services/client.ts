@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IAPIClientsResponse } from '../model/interface/roles';
+import { IAPIClientsResponse, IAPIEmployeesResponse, IAPIClientProjectsResponse } from '../model/interface/roles';
 import { environment } from '../../environments/environment';
 import { Clientclass } from '../model/class/Client';
 
@@ -10,6 +10,16 @@ import { Clientclass } from '../model/class/Client';
 })
 export class ClientService {
   http = inject(HttpClient);
+
+  getAllClientProjects():Observable<IAPIClientProjectsResponse>{
+    console.log(environment.API_URL+'clientProjects')
+    return this.http.get<IAPIClientProjectsResponse>(environment.API_URL+'clientProjects')
+  }
+
+  getAllEmployees():Observable<IAPIEmployeesResponse>{
+    console.log(environment.API_URL+'employees')
+    return this.http.get<IAPIEmployeesResponse>(environment.API_URL+'employees')
+  }
 
   getAllClients():Observable<IAPIClientsResponse>{
     return this.http.get<IAPIClientsResponse>(environment.API_URL+'clients')
@@ -20,6 +30,6 @@ export class ClientService {
   }
 
   deleteClients(cId:number):Observable<IAPIClientsResponse>{
-    return this.http.delete<IAPIClientsResponse>(environment.API_URL+'deleteclient?clientId='+cId)
+    return this.http.delete<IAPIClientsResponse>(environment.API_URL+'deleteclient/'+cId)
   }
 }
