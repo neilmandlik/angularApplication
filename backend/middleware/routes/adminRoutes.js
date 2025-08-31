@@ -14,8 +14,8 @@ const {
 router.get('/roles', getRoles);
 router.get('/designations',getDesignations);
 router.get('/clients', getClients);
-router.post('/addclient', addUpdateClient);
-router.delete('/deleteclient/:id',deleteClient)
+router.post('/clients', addUpdateClient);
+router.delete('/clients/:id',deleteClient)
 router.get('/employees',getAllEmployees)
 router.get('/clientProjects',getAllClientProjects)
 router.post('/clientProjects',addClientProject)
