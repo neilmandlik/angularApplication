@@ -91,9 +91,12 @@
                         </div>
                     </div> 
                     <div class="row mt-3">
-                        <div class="col-6">
+
+                        <app-button (onBtnClick)="addClient($event)" [btnClass]="'btn btn-primary w-100'" [btnText]="'Save Client'" />
+
+                        <!-- <div class="col-6">
                             <button class="btn btn-primary w-100" [disabled]="!form.valid" (click)="addClient()">Save</button>
-                        </div>
+                        </div> -->
                         <div class="col-6">
                             <button class="btn btn-danger w-100">Clear</button>
                         </div>

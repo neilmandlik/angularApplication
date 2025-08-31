@@ -4,10 +4,11 @@ import { ClientService } from '../../services/client';
 import { IAPIClientsResponse } from '../../model/interface/roles';
 import { Clientclass } from '../../model/class/Client';
 import { DatePipe, JsonPipe, UpperCasePipe } from '@angular/common';
+import { Button } from '../../reusableComponent/button/button';
 
 @Component({
   selector: 'app-client',
-  imports: [FormsModule, UpperCasePipe, DatePipe, JsonPipe],
+  imports: [FormsModule, UpperCasePipe, DatePipe, JsonPipe, Button],
   templateUrl: './client.html',
   styles: ``
 })
@@ -36,7 +37,8 @@ export class Client implements OnInit {
     })
   }
 
-  addClient(){
+  addClient(data: string | Clientclass){
+    console.log(data)
     console.log(this.clientObj)
     this.cs.addUpdateClients(this.clientObj).subscribe((res:IAPIClientsResponse)=>{
       if(res.result){
