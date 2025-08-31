@@ -1,58 +1,72 @@
 <div class="row">
-    <div class="col-8">
-        <div class="card">
-            <div class="card-header bg-success">
-                Client List
-            </div>
-            <div class="card-body">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Client ID</th>
-                            <th>Person Name</th>
-                            <th>Company Name</th>
-                            <th>Contact</th>
-                            <th>City</th>
-                            <th>State</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
+    <div class="col-md-7">
+      <h4 class="mb-3">Client Project List</h4>
+      <div class="scrollable-list">
+        <div class="row g-3">
 
-                        </tr>
-                        
-                    </tbody>
-                </table>
+          <!-- Example Card -->
+          @for(p of clientProjectList; track p.clientProjectId) {
+            <div class="col-md-6" >
+              <div class="card shadow-sm border-0 h-100">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                      <h5 class="card-title mb-1">{{ p.projectName }}</h5>
+                      <p class="text-muted mb-1"><strong>Client:</strong> {{ p.clientName }}</p>
+                      <p class="mb-1"><strong>Start Date:</strong> {{ p.startDate }}</p>
+                      <p class="mb-1"><strong>Expected End:</strong> {{ p.expectedEndDate}}</p>
+                      <hr class="my-2">
+                      <p class="mb-1"><strong>Assigned To:</strong> {{ p.empName }}</p>
+                      <p class="text-muted small mb-0"><strong>Employee ID:</strong> {{ p.empId }} | {{ p.empCode }}</p>
+                    </div>
+                    <div class="ms-2">
+                      <button class="btn btn-sm btn-outline-primary mb-1">✏️</button>
+                      <button class="btn btn-sm btn-outline-danger">🗑️</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+          }
+
         </div>
+      </div>
     </div>
 
     <div class="col-4">
         <div class="card">
             <div class="card-header bg-success">
-                New Client
+                New Client Project
             </div>
             <div class="card-body">
                 <form [formGroup] = 'projectForm' >
                     <div class="row">
                         <div class="col-6">
                             <label for="">Employee Name: </label>
-                            <select formControlName="empName" name="empName" class="form-control">
+                            <select formControlName="empId" name="empId" class="form-control">
                                 <option value="">Select Employee</option>
                                 @for(e of empList;track e.empId){
-                                    <option [value]="e.empId">{{e.empName}}</option>
+                                    <option [value]="e.empId">{{e.empName}}, {{e.empDesignation}}</option>
                                 }
                             </select>
-                        </div>
-                        <div class="col-6">
-                            <label for="">Employee Designation: </label>
-                            <input type="text" formControlName="empDesg" class="form-control">
                         </div>
                         <div class="col-6">
                             <label for="">Project Name: </label>
                             <input type="text" formControlName="projectName" class="form-control">
                         </div>
+
+                        @if(projectForm.controls['projectName'].touched){
+
+                            <div class="text-danger">
+                                @if(projectForm.controls['projectName'].errors?.['required']){
+                                    <span>This is required</span>
+                                }
+                                @if(projectForm.controls['projectName'].errors?.['minlength']){
+                                    <span>Minimum Length should be 4</span>
+                                }
+                            </div>
+
+                        }
 
                         <div class="col-6">
                             <label for="">Project Details: </label>
@@ -65,7 +79,7 @@
                             <select name="clientName" formControlName="clientName" class="form-control">
                                 <option value="">Select Client Name</option>
                                 @for(c of clientList;track c.clientId){
-                                    <option [value]="c.clientId">{{c.companyName}}</option>
+                                    <option [value]="c.companyName">{{c.companyName}}</option>
                                 }
                             </select>
                         </div>
@@ -77,8 +91,16 @@
                         
                         <div class="col-6">
                             <label for="">End Date: </label>
-                            <input type="date" formControlName="endDate" class="form-control">
-                        </div>                  
+                            <input type="date" formControlName="expectedEndDate" class="form-control">
+                        </div>      
+                        <div class="row mt-3">
+                            <div class="col-6">
+                                <button class="btn btn-primary w-100" (click)="onSaveClientProject()">Save</button>
+                            </div>
+                            <div class="col-6">
+                                <button class="btn btn-danger w-100">Clear</button>
+                            </div>
+                        </div>            
                     </div>
                 </form>               
             </div>

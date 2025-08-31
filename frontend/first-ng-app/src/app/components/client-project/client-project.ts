@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Employeeclass } from '../../model/class/Employee';
 import { Clientclass } from '../../model/class/Client';
 import { ClientService } from '../../services/client';
@@ -12,6 +12,8 @@ import { ClientProjectclass } from '../../model/class/ClientProject';
   templateUrl:'./client-project.html',
   styles: ``
 })
+
+
 export class ClientProject implements OnInit {
 
  cs = inject(ClientService)
@@ -19,16 +21,15 @@ export class ClientProject implements OnInit {
 
   empList: Employeeclass[] = []
   clientList: Clientclass[]=[]
-  clientPriojectList: ClientProjectclass[] = []
+  clientProjectList: ClientProjectclass[] = []
 
   projectForm: FormGroup = new FormGroup({
-    empName: new FormControl(""),
-    empDesg: new FormControl(""),
-    projectName: new FormControl(""),
+    empId: new FormControl(""),
+    projectName: new FormControl("",[Validators.required,Validators.minLength(4)]),
     projectDetails: new FormControl(""),
     clientName: new FormControl(""),
     startDate: new FormControl(""),
-    endDate: new FormControl("")
+    expectedEndDate: new FormControl("")
   })
 
   ngOnInit(): void {
@@ -55,13 +56,35 @@ export class ClientProject implements OnInit {
 
     this.cs.getAllClientProjects().subscribe((res: IAPIClientProjectsResponse)=>{
       if(res.result){        
-        this.clientPriojectList = res.data
+        this.clientProjectList = res.data
         this.cdr.detectChanges()
       }
       else{
         alert("Unsuccessful")
       }
     })
+  }
+
+  onSaveClientProject(){
+    const formValue = this.projectForm.value
+    console.log(formValue)
+    const empDetails: Employeeclass | undefined= this.empList.find(ele => ele.empId === parseInt(formValue.empId))
+    console.log(empDetails)
+    if(empDetails){
+      const {role,...rest} = empDetails
+      const cliPrObj = new ClientProjectclass({...rest,...formValue})
+      console.log(cliPrObj)
+      this.cs.addClientProject(cliPrObj).subscribe((res: IAPIClientProjectsResponse)=>{
+        if(res.result){
+          this.clientProjectList = res.data
+          console.log(this.clientProjectList)
+          this.cdr.detectChanges()
+        }else{
+          alert('Únsuccessful')
+        }
+      })
+    }
+
   }
 
 }
