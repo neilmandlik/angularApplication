@@ -1,9 +1,9 @@
-import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Employeeclass } from '../../model/class/Employee';
 import { Clientclass } from '../../model/class/Client';
 import { ClientService } from '../../services/client';
-import { IAPIClientProjectsResponse, IAPIClientsResponse, IAPIEmployeesResponse } from '../../model/interface/roles';
+import { IAPIClientsResponse, IAPIEmployeesResponse } from '../../model/interface/roles';
 import { ClientProjectclass } from '../../model/class/ClientProject';
 import { AsyncPipe } from '@angular/common';
 import { Observable } from 'rxjs';
@@ -18,12 +18,16 @@ import { Observable } from 'rxjs';
 
 export class ClientProject implements OnInit {
 
- cs = inject(ClientService)
- cdr = inject(ChangeDetectorRef)
+  cs = inject(ClientService)
+  cdr = inject(ChangeDetectorRef)
+
 
   empList: Employeeclass[] = []
-  clientList: Clientclass[]=[]
+  clientList = signal<Clientclass[]>([])
   clientProjectList$: Observable<ClientProjectclass[]> = new Observable<ClientProjectclass[]>
+
+  //signal Basics
+  firstName = signal("Hello World")
 
   projectForm: FormGroup = new FormGroup({
     empId: new FormControl(""),
@@ -38,8 +42,7 @@ export class ClientProject implements OnInit {
 
     this.cs.getAllClients().subscribe((res: IAPIClientsResponse)=>{
       if(res.result){        
-        this.clientList = res.data
-        this.cdr.detectChanges()
+        this.clientList = signal<Clientclass[]>(res.data)
       }
       else{
         alert("Unsuccessful")
@@ -49,7 +52,6 @@ export class ClientProject implements OnInit {
     this.cs.getAllEmployees().subscribe((res: IAPIEmployeesResponse)=>{
       if(res.result){        
         this.empList = res.data
-        this.cdr.detectChanges()
       }
       else{
         alert("Unsuccessful")
@@ -72,6 +74,10 @@ export class ClientProject implements OnInit {
       this.cdr.detectChanges()
     }
 
+  }
+
+  changeSignal(){
+    this.firstName.set("Hello Universe")
   }
 
   getClientProjects(){

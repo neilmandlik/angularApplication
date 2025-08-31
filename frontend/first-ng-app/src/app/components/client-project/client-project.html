@@ -36,7 +36,8 @@
     <div class="col-4">
         <div class="card">
             <div class="card-header bg-success">
-                New Client Project
+                New Client Project {{firstName()}}
+                <button class="btn btn-danger" (click) = "changeSignal()">changeSignal</button>
             </div>
             <div class="card-body">
                 <form [formGroup] = 'projectForm' >
@@ -78,7 +79,7 @@
                             <label for="">Client Name: </label>
                             <select name="clientName" formControlName="clientName" class="form-control">
                                 <option value="">Select Client Name</option>
-                                @for(c of clientList;track c.clientId){
+                                @for(c of clientList();track c.clientId){
                                     <option [value]="c.companyName">{{c.companyName}}</option>
                                 }
                             </select>
