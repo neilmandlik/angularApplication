@@ -9,6 +9,7 @@ const path = require('path');
 
 // Path to clients.json (absolute path so fs can write)
 const clientsFilePath = path.join(__dirname, '../models/clients.json');
+const clientProjectsFilePath = path.join(__dirname,'../models/client-project.json')
 
 const getRoles = (req, res) => {
   res.json(roles);
@@ -82,6 +83,24 @@ const deleteClient = (req, res) => {
 
   res.json(clients);
 }
+
+const addClientProject = (req,res) =>{
+  const fileData = fs.readFileSync(clientProjectsFilePath)
+  const clientProjects = JSON.parse(fileData)
+  const newEle = req.body
+
+  if(newEle.clientProjectId===0){
+    newEle.clientProjectId = clientProjects.data.reduce((max,ele)=>max = max<ele.clientProjectId?ele.clientProjectId:max,0)+1
+    clientProjects.data.push(newEle)
+  }
+  else{
+    clientProjects.data = clientProjects.data(ele=>ele.clientProjectId===newEle.clientProjectId?newEle:ele)
+  }
+
+  fs.writeFileSync(clientProjectsFilePath,JSON.stringify(clientProjects,null,2))
+  res.json(clientProjects)
+}
+
 module.exports = { 
   getRoles, 
   getDesignations, 
@@ -89,5 +108,6 @@ module.exports = {
   getClients,
   deleteClient,
   getAllEmployees,
-  getAllClientProjects
+  getAllClientProjects,
+  addClientProject
 };

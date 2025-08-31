@@ -7,7 +7,8 @@ const {
     getClients,
     deleteClient,
     getAllEmployees,
-    getAllClientProjects
+    getAllClientProjects,
+    addClientProject
 } = require('../../controllers/adminControllers');
 
 router.get('/roles', getRoles);
@@ -17,5 +18,6 @@ router.post('/addclient', addUpdateClient);
 router.delete('/deleteclient/:id',deleteClient)
 router.get('/employees',getAllEmployees)
 router.get('/clientProjects',getAllClientProjects)
+router.post('/clientProjects',addClientProject)
 
 module.exports = router;
