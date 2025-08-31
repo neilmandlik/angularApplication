@@ -29,7 +29,7 @@ const getAllEmployees = (req,res) => {
 }
 
 const getAllClientProjects = (req,res) =>{
-  res.json(clientProject)
+  res.json(clientProject.data)
 }
 
 const addUpdateClient = (req, res) => {
@@ -98,7 +98,7 @@ const addClientProject = (req,res) =>{
   }
 
   fs.writeFileSync(clientProjectsFilePath,JSON.stringify(clientProjects,null,2))
-  res.json(clientProjects)
+  res.json(clientProjects.data)
 }
 
 module.exports = { 

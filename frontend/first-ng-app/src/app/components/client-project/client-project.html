@@ -5,7 +5,7 @@
         <div class="row g-3">
 
           <!-- Example Card -->
-          @for(p of clientProjectList; track p.clientProjectId) {
+          @for(p of clientProjectList$ | async; track p.clientProjectId) {
             <div class="col-md-6" >
               <div class="card shadow-sm border-0 h-100">
                 <div class="card-body">

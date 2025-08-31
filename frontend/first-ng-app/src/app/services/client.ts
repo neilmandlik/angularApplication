@@ -12,13 +12,13 @@ import { ClientProjectclass } from '../model/class/ClientProject';
 export class ClientService {
   http = inject(HttpClient);
 
-  addClientProject(obj: ClientProjectclass):Observable<IAPIClientProjectsResponse>{
-    return this.http.post<IAPIClientProjectsResponse>(environment.API_URL+'clientProjects',obj)
+  addClientProject(obj: ClientProjectclass){
+    return this.http.post<ClientProjectclass[]>(environment.API_URL+'clientProjects',obj)
   }
 
-  getAllClientProjects():Observable<IAPIClientProjectsResponse>{
+  getAllClientProjects(){
     console.log(environment.API_URL+'clientProjects')
-    return this.http.get<IAPIClientProjectsResponse>(environment.API_URL+'clientProjects')
+    return this.http.get<ClientProjectclass[]>(environment.API_URL+'clientProjects')
   }
 
   getAllEmployees():Observable<IAPIEmployeesResponse>{

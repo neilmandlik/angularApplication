@@ -5,10 +5,12 @@ import { Clientclass } from '../../model/class/Client';
 import { ClientService } from '../../services/client';
 import { IAPIClientProjectsResponse, IAPIClientsResponse, IAPIEmployeesResponse } from '../../model/interface/roles';
 import { ClientProjectclass } from '../../model/class/ClientProject';
+import { AsyncPipe } from '@angular/common';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-client-project',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, AsyncPipe],
   templateUrl:'./client-project.html',
   styles: ``
 })
@@ -21,7 +23,7 @@ export class ClientProject implements OnInit {
 
   empList: Employeeclass[] = []
   clientList: Clientclass[]=[]
-  clientProjectList: ClientProjectclass[] = []
+  clientProjectList$: Observable<ClientProjectclass[]> = new Observable<ClientProjectclass[]>
 
   projectForm: FormGroup = new FormGroup({
     empId: new FormControl(""),
@@ -54,15 +56,7 @@ export class ClientProject implements OnInit {
       }
     })
 
-    this.cs.getAllClientProjects().subscribe((res: IAPIClientProjectsResponse)=>{
-      if(res.result){        
-        this.clientProjectList = res.data
-        this.cdr.detectChanges()
-      }
-      else{
-        alert("Unsuccessful")
-      }
-    })
+    this.getClientProjects()
   }
 
   onSaveClientProject(){
@@ -74,17 +68,15 @@ export class ClientProject implements OnInit {
       const {role,...rest} = empDetails
       const cliPrObj = new ClientProjectclass({...rest,...formValue})
       console.log(cliPrObj)
-      this.cs.addClientProject(cliPrObj).subscribe((res: IAPIClientProjectsResponse)=>{
-        if(res.result){
-          this.clientProjectList = res.data
-          console.log(this.clientProjectList)
-          this.cdr.detectChanges()
-        }else{
-          alert('Únsuccessful')
-        }
-      })
+      this.clientProjectList$ = this.cs.addClientProject(cliPrObj)
+      this.cdr.detectChanges()
     }
 
+  }
+
+  getClientProjects(){
+    this.clientProjectList$ = this.cs.getAllClientProjects()
+    this.cdr.detectChanges()
   }
 
 }
