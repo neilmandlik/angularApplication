@@ -6,6 +6,7 @@ import { ClientProject } from './components/client-project/client-project';
 import { Login } from './components/login/login';
 import { Layout } from './components/layout/layout';
 import { Counter } from './components/counter/counter';
+import { Test } from './components/test/test';
 
 export const routes: Routes = [
     {
@@ -20,6 +21,10 @@ export const routes: Routes = [
     {
         path: 'counter',
         component: Counter
+    },
+    {
+        path: 'test',
+        component: Test
     },
     {
         path: 'layout',

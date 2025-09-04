@@ -71,7 +71,6 @@ export class ClientProject implements OnInit {
       const cliPrObj = new ClientProjectclass({...rest,...formValue})
       console.log(cliPrObj)
       this.clientProjectList$ = this.cs.addClientProject(cliPrObj)
-      this.cdr.detectChanges()
     }
 
   }
