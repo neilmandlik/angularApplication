@@ -10,7 +10,7 @@ import { Button } from '../../reusableComponent/button/button';
   selector: 'app-client',
   imports: [FormsModule, UpperCasePipe, DatePipe, JsonPipe, Button],
   templateUrl: './client.html',
-  styles: ``
+  styleUrls: [`./client.css`]
 })
 export class Client implements OnInit {
 

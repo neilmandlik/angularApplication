@@ -36,3 +36,8 @@ export interface IAPIEmployeesResponse extends IAPIResponseTemplate {
 export interface IAPIClientProjectsResponse extends IAPIResponseTemplate {
     data: ClientProjectclass[];
 }
+
+export interface IAPILoginResponse {
+    result: boolean,
+    accessToken: string;
+}

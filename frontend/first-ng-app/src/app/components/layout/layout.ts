@@ -5,7 +5,7 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
   selector: 'app-layout',
   imports: [RouterLink, RouterLinkActive, RouterOutlet],
   templateUrl: '/layout.html',
-  styles: ``
+  styleUrls: [`./layout.css`]
 })
 export class Layout {
 

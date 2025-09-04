@@ -1,17 +1,22 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { IAPIClientsResponse, IAPIEmployeesResponse, IAPIClientProjectsResponse } from '../model/interface/roles';
+import { interval, Observable } from 'rxjs';
+import { IAPIClientsResponse, IAPIEmployeesResponse, IAPIClientProjectsResponse, IAPILoginResponse } from '../model/interface/roles';
 import { environment } from '../../environments/environmentWithAPI';
 import { Clientclass } from '../model/class/Client';
 import { ClientProjectclass } from '../model/class/ClientProject';
 import { Constant } from '../constant/Constant';
+import { ExternalUser } from '../model/class/ExternalUser';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClientService {
   http = inject(HttpClient);
+
+  loginUser(obj: ExternalUser){
+    return this.http.post<IAPILoginResponse>(environment.API_URL+Constant.API_METHOD.LOGIN_USER,obj)
+  }
 
   addClientProject(obj: ClientProjectclass){
     return this.http.post<ClientProjectclass[]>(environment.API_URL+Constant.API_METHOD.CRUD_CLIENT_PROJECTS,obj)
