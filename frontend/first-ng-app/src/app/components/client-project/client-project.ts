@@ -6,7 +6,7 @@ import { ClientService } from '../../services/client';
 import { IAPIClientsResponse, IAPIEmployeesResponse } from '../../model/interface/roles';
 import { ClientProjectclass } from '../../model/class/ClientProject';
 import { AsyncPipe } from '@angular/common';
-import { Observable } from 'rxjs';
+import { interval, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-client-project',
@@ -82,7 +82,6 @@ export class ClientProject implements OnInit {
 
   getClientProjects(){
     this.clientProjectList$ = this.cs.getAllClientProjects()
-    this.cdr.detectChanges()
   }
 
 }

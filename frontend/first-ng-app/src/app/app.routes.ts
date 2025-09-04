@@ -5,6 +5,7 @@ import { Client } from './components/client/client';
 import { ClientProject } from './components/client-project/client-project';
 import { Login } from './components/login/login';
 import { Layout } from './components/layout/layout';
+import { Counter } from './components/counter/counter';
 
 export const routes: Routes = [
     {
@@ -15,6 +16,10 @@ export const routes: Routes = [
     {
         path: 'login',
         component: Login,
+    },
+    {
+        path: 'counter',
+        component: Counter
     },
     {
         path: 'layout',
