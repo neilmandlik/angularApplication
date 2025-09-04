@@ -39,6 +39,9 @@ function test(){
         id: 1,
         name: 'Updated John'
     }
+    // console.log(arr.indexOf(arr.find(ele=>ele.id===1)))    
+    arr.splice(arr.indexOf(arr.find(ele=>ele.id===1)),1,newObj)
+
     console.log(arr)
 }
 
