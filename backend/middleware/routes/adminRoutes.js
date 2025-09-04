@@ -10,6 +10,7 @@ const {
     getAllClientProjects,
     addClientProject
 } = require('../../controllers/adminControllers');
+const { authControllers } = require('../../controllers/authControllers');
 
 router.get('/roles', getRoles);
 router.get('/designations',getDesignations);
@@ -19,5 +20,6 @@ router.delete('/clients/:id',deleteClient)
 router.get('/employees',getAllEmployees)
 router.get('/clientProjects',getAllClientProjects)
 router.post('/clientProjects',addClientProject)
+router.post('/login',authControllers)
 
 module.exports = router;
