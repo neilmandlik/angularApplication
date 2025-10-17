@@ -1,0 +1,9 @@
+{
+    "todos":[
+        {"id": 1, "title": "Learn NGRX State Management", "isCompleted": false},
+        {"id": 2, "title": "Learn Basic Angular Framework", "isCompleted": true},
+        {"id": 3, "title": "Learn Lazy Loading", "isCompleted": true},
+        {"id": 4, "title": "Implement your first use case", "isCompleted": false},
+        {"id": 5, "title": "Understand the functionality of each component", "isCompleted": false}
+    ]
+}

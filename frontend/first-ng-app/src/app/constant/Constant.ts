@@ -4,5 +4,6 @@ export const Constant = {
         CRUD_CLIENTS: "clients",
         CRUD_CLIENT_PROJECTS: "clientProjects",
         LOGIN_USER: "login",
+        CRUD_TODOS: "todos"
     }
 }

@@ -1,0 +1,30 @@
+<div>
+    @for(t of todoList$ | async;track t.id){
+        <p>{{t.title}},{{t.isCompleted}}</p>
+    }
+</div>
+
+<!-- Button trigger modal -->
+<button type="button"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- <button class="btn-imocha-secondary me-4 d-flex px-3 justify-content-center align-items-center" 
+    data-bs-toggle="modal" data-bs-target="#interviewInvitationModal">
+    <span class="invite-text">Send Invitation</span>
+</button> -->
+
+<form ngForm = "todoForm">
+    <input 
+        type="text"
+        formControlName = "name"
+    >
+    <div class="text-danger">
+        @if()
+        <span></span>
+    </div>
+</form>
+
